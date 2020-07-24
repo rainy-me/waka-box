@@ -13,7 +13,7 @@ const wakatime = new WakaTimeClient(wakatimeApiKey);
 const octokit = new Octokit({ auth: `token ${githubToken}` });
 
 async function main() {
-  const stats = await wakatime.getMyStats({ range: RANGE.LAST_7_DAYS });
+  const stats = await wakatime.getMyStats({ range: RANGE.LAST_YEAR });
   await updateGist(stats);
 }
 
@@ -49,7 +49,7 @@ async function updateGist(stats) {
       gist_id: gistId,
       files: {
         [filename]: {
-          filename: `📊 Weekly development breakdown`,
+          filename: `development breakdown since last year`,
           content: lines.join("\n")
         }
       }
