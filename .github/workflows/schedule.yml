@@ -10,9 +10,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: "12.x"
       - name: Update gist
-        uses: matchai/waka-box@master
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           GIST_ID: 09d769135cb97a15f57c162ff8b27bdc
           WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
+        run: node dist/index.js
