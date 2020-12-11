@@ -12,7 +12,7 @@ module.exports = (function(e, t) {
   }
   __webpack_require__.ab = __dirname + "/";
   function startup() {
-    return __webpack_require__(104);
+    return __webpack_require__(731);
   }
   return startup();
 })({
@@ -837,68 +837,6 @@ module.exports = (function(e, t) {
   },
   87: function(e) {
     e.exports = require("os");
-  },
-  104: function(e, t, r) {
-    r(63).config();
-    const { WakaTimeClient: n, RANGE: i } = r(650);
-    const s = r(0);
-    const { GIST_ID: o, GH_TOKEN: a, WAKATIME_API_KEY: u } = process.env;
-    const p = new n(u);
-    const c = new s({ auth: `token ${a}` });
-    async function main() {
-      const e = await p.getMyStats({ range: i.LAST_7_DAYS });
-      await updateGist(e);
-    }
-    async function updateGist(e) {
-      let t;
-      try {
-        t = await c.gists.get({ gist_id: o });
-      } catch (e) {
-        console.error(`Unable to get gist\n${e}`);
-      }
-      const r = [];
-      for (let t = 0; t < Math.min(e.data.languages.length, 5); t++) {
-        const n = e.data.languages[t];
-        const { name: i, percent: s, text: o } = n;
-        const a = [
-          i.padEnd(11),
-          o.padEnd(14),
-          generateBarChart(s, 21),
-          String(s.toFixed(1)).padStart(5) + "%"
-        ];
-        r.push(a.join(" "));
-      }
-      if (r.length == 0) return;
-      try {
-        const e = Object.keys(t.data.files)[0];
-        await c.gists.update({
-          gist_id: o,
-          files: {
-            [e]: {
-              filename: `development breakdown since last year`,
-              content: r.join("\n")
-            }
-          }
-        });
-      } catch (e) {
-        console.error(`Unable to update gist\n${e}`);
-      }
-    }
-    function generateBarChart(e, t) {
-      const r = "░▏▎▍▌▋▊▉█";
-      const n = Math.floor((t * 8 * e) / 100);
-      const i = Math.floor(n / 8);
-      if (i >= t) {
-        return r.substring(8, 9).repeat(t);
-      }
-      const s = n % 8;
-      return [r.substring(8, 9).repeat(i), r.substring(s, s + 1)]
-        .join("")
-        .padEnd(t, r.substring(0, 1));
-    }
-    (async () => {
-      await main();
-    })();
   },
   118: function(e, t, r) {
     "use strict";
@@ -11944,6 +11882,246 @@ module.exports = (function(e, t) {
         return e.apply(t, r);
       };
     };
+  },
+  731: function(e, t, r) {
+    "use strict";
+    var n =
+      (this && this.__awaiter) ||
+      function(e, t, r, n) {
+        function adopt(e) {
+          return e instanceof r
+            ? e
+            : new r(function(t) {
+                t(e);
+              });
+        }
+        return new (r || (r = Promise))(function(r, i) {
+          function fulfilled(e) {
+            try {
+              step(n.next(e));
+            } catch (e) {
+              i(e);
+            }
+          }
+          function rejected(e) {
+            try {
+              step(n["throw"](e));
+            } catch (e) {
+              i(e);
+            }
+          }
+          function step(e) {
+            e.done ? r(e.value) : adopt(e.value).then(fulfilled, rejected);
+          }
+          step((n = n.apply(e, t || [])).next());
+        });
+      };
+    var i =
+      (this && this.__generator) ||
+      function(e, t) {
+        var r = {
+            label: 0,
+            sent: function() {
+              if (s[0] & 1) throw s[1];
+              return s[1];
+            },
+            trys: [],
+            ops: []
+          },
+          n,
+          i,
+          s,
+          o;
+        return (
+          (o = { next: verb(0), throw: verb(1), return: verb(2) }),
+          typeof Symbol === "function" &&
+            (o[Symbol.iterator] = function() {
+              return this;
+            }),
+          o
+        );
+        function verb(e) {
+          return function(t) {
+            return step([e, t]);
+          };
+        }
+        function step(o) {
+          if (n) throw new TypeError("Generator is already executing.");
+          while (r)
+            try {
+              if (
+                ((n = 1),
+                i &&
+                  (s =
+                    o[0] & 2
+                      ? i["return"]
+                      : o[0]
+                      ? i["throw"] || ((s = i["return"]) && s.call(i), 0)
+                      : i.next) &&
+                  !(s = s.call(i, o[1])).done)
+              )
+                return s;
+              if (((i = 0), s)) o = [o[0] & 2, s.value];
+              switch (o[0]) {
+                case 0:
+                case 1:
+                  s = o;
+                  break;
+                case 4:
+                  r.label++;
+                  return { value: o[1], done: false };
+                case 5:
+                  r.label++;
+                  i = o[1];
+                  o = [0];
+                  continue;
+                case 7:
+                  o = r.ops.pop();
+                  r.trys.pop();
+                  continue;
+                default:
+                  if (
+                    !((s = r.trys), (s = s.length > 0 && s[s.length - 1])) &&
+                    (o[0] === 6 || o[0] === 2)
+                  ) {
+                    r = 0;
+                    continue;
+                  }
+                  if (o[0] === 3 && (!s || (o[1] > s[0] && o[1] < s[3]))) {
+                    r.label = o[1];
+                    break;
+                  }
+                  if (o[0] === 6 && r.label < s[1]) {
+                    r.label = s[1];
+                    s = o;
+                    break;
+                  }
+                  if (s && r.label < s[2]) {
+                    r.label = s[2];
+                    r.ops.push(o);
+                    break;
+                  }
+                  if (s[2]) r.ops.pop();
+                  r.trys.pop();
+                  continue;
+              }
+              o = t.call(e, r);
+            } catch (e) {
+              o = [6, e];
+              i = 0;
+            } finally {
+              n = s = 0;
+            }
+          if (o[0] & 5) throw o[1];
+          return { value: o[0] ? o[1] : void 0, done: true };
+        }
+      };
+    var s =
+      (this && this.__importDefault) ||
+      function(e) {
+        return e && e.__esModule ? e : { default: e };
+      };
+    Object.defineProperty(t, "__esModule", { value: true });
+    var o = s(r(63));
+    o.default.config();
+    var a = r(650);
+    var u = s(r(0));
+    var p = process.env,
+      c = p.DRY,
+      d = p.GIST_ID,
+      l = p.GH_TOKEN,
+      g = p.WAKATIME_API_KEY;
+    var m = !!c;
+    function main() {
+      return n(this, void 0, void 0, function() {
+        var e, t, r, n, s, o, p, c;
+        var h;
+        return i(this, function(i) {
+          switch (i.label) {
+            case 0:
+              e = new a.WakaTimeClient(g);
+              return [4, e.getMyStats({ range: a.RANGE.LAST_7_DAYS })];
+            case 1:
+              t = i.sent().data;
+              r = [];
+              r.push(
+                [
+                  "Total".padEnd(11),
+                  t.human_readable_total_including_other_language
+                ].join(" ")
+              );
+              t.languages.slice(0, 5).forEach(function(e) {
+                var t = e.name,
+                  n = e.percent,
+                  i = e.text;
+                r.push(
+                  [
+                    t.padEnd(11),
+                    i.padEnd(14),
+                    generateBarChart(n, 18),
+                    String(n.toFixed(1)).padStart(5) + "%"
+                  ].join(" ")
+                );
+              });
+              if (r.length == 0) return [2];
+              n = new u.default({ auth: "token " + l });
+              i.label = 2;
+            case 2:
+              i.trys.push([2, 4, , 5]);
+              return [4, n.gists.get({ gist_id: d })];
+            case 3:
+              s = i.sent();
+              return [3, 5];
+            case 4:
+              o = i.sent();
+              console.error("Unable to get gist\n" + o);
+              return [3, 5];
+            case 5:
+              i.trys.push([5, 7, , 8]);
+              p = Object.keys(s.data.files)[0];
+              if (m) {
+                console.log(r.join("\n"));
+                return [2];
+              }
+              return [
+                4,
+                n.gists.update({
+                  gist_id: d,
+                  files:
+                    ((h = {}),
+                    (h[p] = {
+                      filename: "development breakdown last week",
+                      content: r.join("\n")
+                    }),
+                    h)
+                })
+              ];
+            case 6:
+              i.sent();
+              return [3, 8];
+            case 7:
+              c = i.sent();
+              console.error("Unable to update gist\n" + c);
+              return [3, 8];
+            case 8:
+              return [2];
+          }
+        });
+      });
+    }
+    function generateBarChart(e, t) {
+      var r = "░▏▎▍▌▋▊▉█";
+      var n = Math.floor((t * 8 * e) / 100);
+      var i = Math.floor(n / 8);
+      if (i >= t) {
+        return r.substring(8, 9).repeat(t);
+      }
+      var s = n % 8;
+      return [r.substring(8, 9).repeat(i), r.substring(s, s + 1)]
+        .join("")
+        .padEnd(t, r.substring(0, 1));
+    }
+    main();
   },
   732: function(e) {
     "use strict";
