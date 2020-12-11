@@ -9,16 +9,16 @@
     "build": "ncc build index.ts --out dist --minify"
   },
   "dependencies": {
-    "@octokit/rest": "16.36.0",
-    "axios": "0.19.0",
-    "dotenv": "8.2.0",
-    "wakatime-client": "2.0.3"
+    "@octokit/rest": "^18.0.12",
+    "axios": "^0.21.0",
+    "dotenv": "^8.2.0",
+    "wakatime-client": "^2.6.0"
   },
   "devDependencies": {
-    "@zeit/ncc": "0.20.5",
-    "husky": "3.1.0",
-    "prettier": "1.19.1",
-    "pretty-quick": "2.0.1",
+    "@zeit/ncc": "^0.22.3",
+    "husky": "^4.3.5",
+    "prettier": "^2.2.1",
+    "pretty-quick": "^3.1.0",
     "typescript": "^4.1.2"
   },
   "husky": {
