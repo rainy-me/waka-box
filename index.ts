@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 dotenv.config();
 // @ts-ignore
 import { WakaTimeClient, RANGE } from "wakatime-client";
-import Octokit from "@octokit/rest";
+import { Octokit } from "@octokit/rest";
 import type Response from "./fixture.json";
 type R = typeof Response;
 
@@ -44,7 +44,7 @@ async function main() {
 
   const octokit = new Octokit({ auth: `token ${github_token}` });
 
-  let gist: Octokit.Response<Octokit.GistsGetResponse> | null;
+  let gist: Awaited<ReturnType<typeof octokit.gists.get>> | null;
   try {
     gist = await octokit.gists.get({ gist_id });
   } catch (error) {
